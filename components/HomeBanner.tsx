@@ -1,5 +1,11 @@
+"use client"
+import { useEffect, useRef } from "react"
 
 export default function HomeBanner() {
+    const ref = useRef<HTMLVideoElement>(null)
+    useEffect(()=>{
+        ref.current?.play()
+    },[])
     return <section className="w-full relative  h-full min-h-screen mb-20 flex items-center justify-center  overflow-hidden ">
         <div className="relative z-[3] w-full  h-fit bg-transparent">
             <h1 className="text-7xl pt-1  bg-clip-text bg-gradient-to-r from-purple-600 text-transparent via-white to-zinc-800 lg:text-9xl font-bold text-center  relative z-20">
@@ -13,8 +19,8 @@ export default function HomeBanner() {
             <div className="absolute inset-x-60 bottom-0 mx-auto bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
         </div>
         <div className="w-full h-full absolute  inset-0">
-            <video autoPlay muted  playsInline   preload="auto"
- loop className="w-full h-full object-cover"  src={`/video/smoke.mp4`}></video>
+            <video ref={ref} autoPlay muted playsInline preload="auto"
+                loop className="w-full h-full object-cover" src={`/video/smoke.mp4`}></video>
         </div>
     </section>
 }
