@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} max-w-[1600px] mx-auto antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-black text-white max-w-[1600px] mx-auto antialiased`}
       >
         <NavbarResizable/>
         {children}

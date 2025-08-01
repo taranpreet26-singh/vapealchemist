@@ -13,7 +13,8 @@ export default function HomeBanner() {
             <div className="absolute inset-x-60 bottom-0 mx-auto bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
         </div>
         <div className="w-full h-full absolute  inset-0">
-            <video autoPlay muted className="w-full h-full object-cover" loop src={`/video/smoke.mp4`}></video>
+            <video autoPlay muted  playsInline   preload="auto"
+ loop className="w-full h-full object-cover"  src={`/video/smoke.mp4`}></video>
         </div>
     </section>
 }
