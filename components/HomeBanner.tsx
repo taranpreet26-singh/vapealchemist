@@ -24,6 +24,10 @@ export default function HomeBanner() {
         window.addEventListener("click", handleUserInteraction);
         window.addEventListener("touchstart", handleUserInteraction);
         window.addEventListener("keydown", handleUserInteraction);
+        videoRef.current?.play()
+        videoRef.current?.play()
+        videoRef.current?.play()
+        videoRef.current?.play()
         return () => {
             window.removeEventListener("click", handleUserInteraction);
             window.removeEventListener("touchstart", handleUserInteraction);
