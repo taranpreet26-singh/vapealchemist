@@ -46,12 +46,12 @@ export default function HomeBanner() {
             ref={videoParentRef}
             dangerouslySetInnerHTML={{
                 __html: ` <video
-            autoPlay
+            autoplay
             muted
-            playsInline
+            playsinline
             loop 
-            preload="auto"
-             style="
+            preload="metadata"
+            style="
             position: absolute;
             inset: 0;
             width: 100%;
