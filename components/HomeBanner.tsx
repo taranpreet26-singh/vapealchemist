@@ -22,7 +22,7 @@ export default function HomeBanner() {
             playsInline
             loop 
             preload="auto"
-            poster=""
+            poster="/images/poster.png"
             className="w-full h-full object-cover">
                 <source src="/video/smoke.mp4" type="video/mp4" />
             </video>
