@@ -7,29 +7,29 @@ const isSafari = () => {
 };
 
 export default function HomeBanner() {
-    const videoParentRef = useRef<HTMLDivElement>(null)
-    useEffect(() => {
-        if (isSafari() && videoParentRef.current) {
-            const player = videoParentRef.current.children[0] as HTMLVideoElement;
-            if (player) {
-                player.controls = false;
-                player.playsInline = true;
-                player.muted = true;
-                player.setAttribute("muted", "");
-                player.autoplay = true;
-                setTimeout(() => {
-                    const promise = player.play();
-                    if (promise.then) {
-                        promise
-                            .then(() => { })
-                            .catch(() => {
-                            });
-                    }
-                }, 0);
-            }
-        }
-    }, []);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
+    useEffect(()=>{
+        const handleUserInteraction = ()=>{
+            const video = videoRef.current
+            if(video){
+                video.play().catch(err=>{
+                    console.log(err)
+                })
+            }
+            window.removeEventListener("click", handleUserInteraction);
+            window.removeEventListener("touchstart", handleUserInteraction);
+            window.removeEventListener("keydown", handleUserInteraction);
+        }
+        window.addEventListener("click", handleUserInteraction);
+        window.addEventListener("touchstart", handleUserInteraction);
+        window.addEventListener("keydown", handleUserInteraction);
+        return () => {
+            window.removeEventListener("click", handleUserInteraction);
+            window.removeEventListener("touchstart", handleUserInteraction);
+            window.removeEventListener("keydown", handleUserInteraction);
+        };
+    },[])
     return <section className="w-full relative  h-full min-h-screen mb-20 flex items-center justify-center  overflow-hidden ">
         <div className="relative z-[3] w-full   h-fit bg-transparent">
             <h1 className="text-7xl pt-1  bg-clip-text bg-gradient-to-r from-purple-600 text-transparent via-white to-zinc-800 lg:text-9xl font-bold text-center  relative z-20">
@@ -43,26 +43,18 @@ export default function HomeBanner() {
             <div className="absolute inset-x-0 lg:inset-x-60 bottom-0 mx-auto bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
         </div>
         <div
-            ref={videoParentRef}
-            dangerouslySetInnerHTML={{
-                __html: ` <video
-            autoplay
-            muted
-            playsinline
-            loop 
-            preload="metadata"
-            style="
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-        ">
-                <source src="/video/smoke.mp4" type="video/mp4" />
-            </video>`}}
             className="w-full h-full absolute  inset-0">
-
+            <video
+                ref={videoRef}
+                autoPlay
+                muted
+                playsInline
+                loop
+                preload="metadata"
+                className="w-full h-full absolute inset-0 object-cover z-0"
+            >
+                <source src="/video/smoke.mp4" type="video/mp4" />
+            </video>
         </div>
     </section>
 }
