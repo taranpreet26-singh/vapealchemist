@@ -4,19 +4,7 @@ import {  useEffect, useRef } from "react"
 export default function HomeBanner() {
     const ref = useRef<HTMLVideoElement>(null)
 
-    useEffect(()=>{
-        const video = ref.current
-        if(video){
-            const playPromise = video.play()
-            if(playPromise !== undefined){
-                playPromise.then(()=>{
-
-                }).catch(()=>{
-                    console.log("erro")
-                })
-            }
-        }
-    },[])
+    
     return <section className="w-full relative  h-full min-h-screen mb-20 flex items-center justify-center  overflow-hidden ">
         <div className="relative z-[3] w-full   h-fit bg-transparent">
             <h1 className="text-7xl pt-1  bg-clip-text bg-gradient-to-r from-purple-600 text-transparent via-white to-zinc-800 lg:text-9xl font-bold text-center  relative z-20">
@@ -32,9 +20,11 @@ export default function HomeBanner() {
         <div className="w-full h-full absolute  inset-0">
             <video ref={ref}
             autoPlay
+            
             muted
             playsInline
             loop 
+            preload="yes"
             className="w-full h-full object-cover" src={`/video/smoke.mp4`}></video>
         </div>
     </section>
