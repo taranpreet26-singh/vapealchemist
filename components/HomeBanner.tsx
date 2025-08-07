@@ -1,5 +1,6 @@
 "use client"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import { Loader } from "./ui/Loader";
 
 const isSafari = () => {
     const ua = navigator.userAgent.toLowerCase();
@@ -8,12 +9,13 @@ const isSafari = () => {
 
 export default function HomeBanner() {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [loading, setLoading] = useState(true);
 
-    useEffect(()=>{
-        const handleUserInteraction = ()=>{
+    useEffect(() => {
+        const handleUserInteraction = () => {
             const video = videoRef.current
-            if(video){
-                video.play().catch(err=>{
+            if (video) {
+                video.play().catch(err => {
                     console.log(err)
                 })
             }
@@ -25,15 +27,18 @@ export default function HomeBanner() {
         window.addEventListener("touchstart", handleUserInteraction);
         window.addEventListener("keydown", handleUserInteraction);
         videoRef.current?.play()
-        if(window.innerWidth <= 1024){
-            window.scroll({top:10,behavior:"smooth"})
+        if (window.innerWidth <= 1024) {
+            setTimeout(() => {
+                setLoading(false);
+            }, 2000);
+            window.scroll({ top: 10, behavior: "smooth" })
         }
         return () => {
             window.removeEventListener("click", handleUserInteraction);
             window.removeEventListener("touchstart", handleUserInteraction);
             window.removeEventListener("keydown", handleUserInteraction);
         };
-    },[])
+    }, [])
     return <section className="w-full relative  h-full min-h-screen mb-20 flex items-center justify-center  overflow-hidden ">
         <div className="relative z-[3] w-full   h-fit bg-transparent">
             <h1 className="text-7xl pt-1  bg-clip-text bg-gradient-to-r from-purple-600 text-transparent via-white to-zinc-800 lg:text-9xl font-bold text-center  relative z-20">
@@ -61,5 +66,11 @@ export default function HomeBanner() {
                 <source src="/video/smoke.mp4" type="video/mp4" />
             </video>
         </div>
+        {loading && (
+            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+                <Loader text="Preparing your puffs....." />
+            </div>
+        )}
+
     </section>
 }
