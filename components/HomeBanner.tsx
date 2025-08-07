@@ -35,6 +35,7 @@ export default function HomeBanner() {
             muted
             playsInline
             loop 
+            poster="/vercel.svg"
             className="w-full h-full object-cover" src={`/video/smoke.mp4`}></video>
         </div>
     </section>
