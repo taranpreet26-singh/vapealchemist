@@ -22,6 +22,7 @@ export default function HomeBanner() {
             playsInline
             preload="auto"
             loop 
+            controls={false}
             className="w-full h-full object-cover" src={`/video/smoke.mp4`}></video>
         </div>
     </section>
