@@ -25,9 +25,9 @@ export default function HomeBanner() {
         window.addEventListener("touchstart", handleUserInteraction);
         window.addEventListener("keydown", handleUserInteraction);
         videoRef.current?.play()
-        videoRef.current?.play()
-        videoRef.current?.play()
-        videoRef.current?.play()
+        if(window.innerWidth <= 1024){
+            window.scroll({top:10,behavior:"smooth"})
+        }
         return () => {
             window.removeEventListener("click", handleUserInteraction);
             window.removeEventListener("touchstart", handleUserInteraction);
@@ -55,6 +55,7 @@ export default function HomeBanner() {
                 playsInline
                 loop
                 preload="metadata"
+                id="player"
                 className="w-full h-full absolute inset-0 object-cover z-0"
             >
                 <source src="/video/smoke.mp4" type="video/mp4" />
