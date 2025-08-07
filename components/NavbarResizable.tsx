@@ -15,24 +15,28 @@ import { useState } from "react";
 export function NavbarResizable() {
   const navItems = [
     {
+      name: "All Product",
+      link: "/products/all",
+    },
+    {
       name: "Disposables",
-      link: "#features",
+      link: "/products/disposables",
     },
     {
       name: "E-juices",
-      link: "#pricing",
+      link: "/products/ejuices",
     },
     {
       name: "Devices",
-      link: "#contact",
+      link: "/products/devices",
     },
     {
-      name: "New Arrivals",
-      link: "#contact",
+      name: "Accessories",
+      link: "/products/accessories",
     },
     {
-      name: "Accessorie",
-      link: "#contact",
+      name: "Contact Us",
+      link: "/contact-us",
     },
   ];
 
@@ -45,7 +49,7 @@ export function NavbarResizable() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
+            {/* <NavbarButton variant="secondary">Login</NavbarButton> */}
             <NavbarButton variant="gradient">Book a call</NavbarButton>
           </div>
         </NavBody>
@@ -74,13 +78,13 @@ export function NavbarResizable() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <NavbarButton
+              {/* <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
                 className="w-full"
               >
                 Login
-              </NavbarButton>
+              </NavbarButton> */}
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"

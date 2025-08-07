@@ -169,6 +169,7 @@ export const Card = ({
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") { 
+        console.log(currentIndex)
         handleClose();
       }
     }
@@ -236,6 +237,10 @@ export const Card = ({
           </div>
         )}
       </AnimatePresence>
+
+
+
+      
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}

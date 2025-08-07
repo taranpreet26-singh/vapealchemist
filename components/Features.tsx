@@ -9,7 +9,7 @@ export function FeatureSectionGlowingStar() {
             <h2 className="max-w-7xl pl-4 mx-auto mb-10 text-3xl lg:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
                 What Makes Us Different
             </h2>
-            <div className="flex py-20 gap-10 lg:flex-row flex-col items-center justify-center antialiased">
+            <div className=" py-20 flex flex-wrap items-center justify-center md:grid md:grid-cols-2  gap-5 lg:grid-cols-3 antialiased">
                 <GlowingStarsBackgroundCard>
                     <GlowingStarsTitle>Customer First</GlowingStarsTitle>
                     <div className="flex justify-between items-end">

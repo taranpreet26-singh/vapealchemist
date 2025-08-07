@@ -5,22 +5,33 @@ import { motion } from "motion/react";
 import { cn } from "@/libs/utils";
 import Image from "next/image";
 
-export function LensCard() {
-  const [hovering, setHovering] = useState(false);
+type objectVapesType = {
+    name:string,
+    shortInfo:string,
+    puffs:string,
+    nicotineStrength:string,
+    eLiquidCapacity:string,
+    battery:string,
+    features:string[],
+    flavors:string[],
+    img:string
+}
 
+export function LensCard({data}:{data:objectVapesType}) {
+  const [hovering, setHovering] = useState(false);
   return (
-    <div className="w-fit h-fit">
-      <div className="w-full relative rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-8 ">
+    <div className="w-fit h-full p-4">
+      <div className="w-full h-full relative rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-8 ">
         <Rays />
         <Beams />
-        <div className="relative z-10">
+        <div className="relative  z-10">
           <Lens hovering={hovering} setHovering={setHovering}>
             <Image
-              src="https://images.unsplash.com/photo-1713869820987-519844949a8a?q=80&w=3500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src={data.img}
               alt="image"
-              width={500}
+              width={400}
               height={500}
-              className="rounded-2xl"
+              className="rounded-2xl bg-black/70 drop-shadow-2xl"
             />
           </Lens>
           <motion.div
@@ -30,11 +41,12 @@ export function LensCard() {
             className="py-4 relative z-20"
           >
             <h2 className="text-white text-2xl text-left font-bold">
-              Apple Vision Pro
+              {data.name}
             </h2>
             <p className="text-neutral-200 text-left  mt-4">
-              The all new apple vision pro was the best thing that happened
-              around 8 months ago, not anymore.
+              {
+                data.shortInfo
+              }
             </p>
           </motion.div>
         </div>

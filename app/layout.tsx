@@ -26,18 +26,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning
+        className={`${geistSans.variable} ${geistMono.variable} bg-black text-white max-w-[1600px] mx-auto antialiased`}
+        >
       <ThemeProvider
       attribute={'class'}
       defaultTheme="dark"
       >
-      <body suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} bg-black text-white max-w-[1600px] mx-auto antialiased`}
-        >
         <NavbarResizable/>
 
         {children}
-      </body>
         </ThemeProvider>
+      </body>
     </html>
   );
 }
