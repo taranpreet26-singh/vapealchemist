@@ -35,7 +35,9 @@ export default function HomeBanner() {
             muted
             playsInline
             preload="auto"
+            webkit-playsinline="true"
             loop 
+            style={{ pointerEvents: "none" }}
             controls={false}
             className="w-full h-full object-cover" src={`/video/smoke.mp4`}></video>
         </div>
