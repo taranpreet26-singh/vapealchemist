@@ -9,7 +9,7 @@ const isSafari = () => {
 
 export default function HomeBanner() {
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const handleUserInteraction = () => {
@@ -28,8 +28,10 @@ export default function HomeBanner() {
         window.addEventListener("keydown", handleUserInteraction);
         videoRef.current?.play()
         if (window.innerWidth <= 1024) {
+            setLoading(true);
             setTimeout(() => {
                 setLoading(false);
+                
             }, 2000);
             window.scroll({ top: 10, behavior: "smooth" })
         }
