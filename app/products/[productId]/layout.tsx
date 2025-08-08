@@ -14,6 +14,5 @@ export default function ProductLayout( { children }:{children :ReactNode} ){
         <LatestProduct/>
         <TopSelling/>
         <AboutUs/>
-        <Footer/>
     </section>
 }

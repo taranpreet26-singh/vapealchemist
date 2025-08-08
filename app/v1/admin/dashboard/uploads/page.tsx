@@ -10,26 +10,14 @@ import { motion } from "framer-motion"
 import { useRouter } from "next/navigation";
 import { GridPattern } from "@/components/ui/GridPattern";
 import { LensCard } from "@/components/ui/LensCard";
-import { Category } from "@/libs/types";
+import { Category, objectVapesType } from "@/libs/types";
 
 enum ProductStatus {
   Latest = "Latest",
   Old = "Old"
 }
 
-type objectVapesType = {
-    name: string,
-    shortInfo: string,
-    puffs: string,
-    nicotineStrength: string,
-    eLiquidCapacity: string,
-    battery: string,
-    features: string[],
-    flavors: string[],
-    img: string,
-    status : ProductStatus,
-    category :Category
-}
+
 
 
 export default function UploadComponent() {
@@ -43,10 +31,12 @@ export default function UploadComponent() {
     const [eLiquidCapacity, setEliquidCapacity] = useState<string>("")
     const [battery, setBattery] = useState<string>("")
     const [loading, setLoading] = useState<string | null>(null)
-    const [allComponent, setAllComponent] = useState<objectVapesType[] | null>(null)
+    const [allComponent, setAllComponent] = useState<objectVapesType | null>(null)
     const [features, setFeatures] = useState<string[]>([]);
     const [featureInput, setFeatureInput] = useState<string>("");
     const [flavorArr, setFlavorArr] = useState<string[]>([])
+    const [price,setPrice] = useState<number | string>("")
+    const [discount,setDiscount] = useState<number | string>("")
     const [flavor, setFlavor] = useState<string>("")
     const fileRef = useRef<HTMLInputElement>(null)
     const [status,setStatus] = useState<ProductStatus>()
@@ -115,14 +105,18 @@ export default function UploadComponent() {
     async function uploadComponent() {
         try {
             setLoading("Loading....")
-            if ((file || fileUpdate) && name != "" && status && category  && shortInfo != "" && puff != "" && nicotineStrength != "" && eLiquidCapacity != "" && battery != "" && features.length > 0 && flavorArr.length > 0) {
+            if ((file || fileUpdate) && name != "" && price !== 0 && price !== "" && discount !== 0 && discount !== ""  && status && category  && shortInfo != "" && puff != "" && nicotineStrength != "" && eLiquidCapacity != "" && battery != "" && features.length > 0 && flavorArr.length > 0) {
                 const formData = new FormData()
+                alert(discount)
+                alert(price)
                 if (update && fileUpdate) {
                     formData.append("stringFile", fileUpdate)
                 } else if (!update && file) {
                     formData.append("file", file)
                 }
                 formData.append("name", name)
+                formData.append("price", price.toString())
+                formData.append("discount", discount.toString())
                 formData.append("shortInfo", shortInfo)
                 formData.append("status",status.toString())
                 formData.append("category",category.toString())
@@ -207,6 +201,30 @@ export default function UploadComponent() {
             toast.error('Please provide the Category')
         }
     }
+
+    function handlePrice(e:React.ChangeEvent<HTMLInputElement>) {
+        const value = e.target.value
+        const onlyNumbers = /^[0-9]+$/;
+        if(onlyNumbers.test(value)){
+            setPrice(Number(value))
+        }else if(!value){
+            setPrice("")
+        }else{
+            toast.error('Please Enter only number in price')
+        }
+    }
+    function handleDiscount(e:React.ChangeEvent<HTMLInputElement>) {
+        const value = e.target.value
+        const onlyNumbers = /^[0-9]+$/;
+        if(onlyNumbers.test(value)){
+            setDiscount(Number(value))
+        }else if(!value){
+            setDiscount("")
+        }
+        else{
+            toast.error('Please Enter only number in discount')
+        }
+    }
     return <section className="px-4 mt-8   max-w-full h-fit overflow-hidden">
         <div className="w-full py-20 rounded-2xl relative z-[10] flex  justify-center h-full ">
             <div className="w-full h-full rounded-lg border-[1px] flex flex-col items-center p-4 lg:p-8 bg-black/50 backdrop-blur-xs border-neutral-800">
@@ -262,6 +280,16 @@ export default function UploadComponent() {
                                     :
                                     <input type="text" name="name" id="name" value={name} onChange={(e) => { setName(e.target.value) }} className="border-[0.5px] p-1  border-neutral-800 rounded-sm bg-transparent text-white" />
                             }
+                        </div>
+                        <div className="flex gap-4">
+                        <div className="w-full mt-6 flex flex-col gap-2 h-fit">
+                            <label htmlFor="price" className="text-lg font-semibold ">Price</label>
+                            <input name="price" type="text" value={price.toString()} onChange={handlePrice} id="shortInfo " className="border-[0.5px] p-1 border-neutral-800 rounded-sm bg-transparent text-white" />
+                        </div>
+                        <div className="w-full mt-6 flex flex-col gap-2 h-fit">
+                            <label htmlFor="discount" className="text-lg font-semibold ">Discount</label>
+                            <input name="discount" type="text" value={discount} onChange={handleDiscount} id="shortInfo " className="border-[0.5px] p-1 border-neutral-800 rounded-sm bg-transparent text-white" />
+                        </div>
                         </div>
                         <div className="w-full mt-6 flex flex-col gap-2 h-fit">
                             <label htmlFor="status" className="text-lg font-semibold ">Category</label>
@@ -454,7 +482,7 @@ export default function UploadComponent() {
                         allComponent?.map((element, index) => {
                             return <div className="w-full h-full" key={index}>
                                 <div className="flex gap-2 justify-end px-6 w-full">
-                                    <div onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" });  setUpdate(true); setCategory(element.category); setName(element.name); setStatus(element.status); setShortInfo(element.shortInfo); setFileUpdate(element.img) ; setPuff(element.puffs); setEliquidCapacity(element.eLiquidCapacity); setNicotineStrength(element.nicotineStrength); setBattery(element.battery); setFeatures(JSON.parse(element.features.toString())); setFlavorArr(JSON.parse(element.flavors.toString())) }} className="relative group">
+                                    <div onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" });  setUpdate(true); setCategory(element.category); setPrice(element.price); setDiscount(element.discount); setName(element.name); setStatus(element.status as ProductStatus); setShortInfo(element.shortInfo); setFileUpdate(element.img) ; setPuff(element.puffs); setEliquidCapacity(element.eLiquidCapacity); setNicotineStrength(element.nicotineStrength); setBattery(element.battery); setFeatures(JSON.parse(element.features.toString())); setFlavorArr(JSON.parse(element.flavors.toString())) }} className="relative group">
                                         <Pencil size={20} className="cursor-pointer" />
                                         <motion.span
                                             className="absolute bottom-full mb-1 hidden group-hover:flex px-2 py-1 text-xs text-white bg-black rounded">

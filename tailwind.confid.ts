@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  darkMode: 'class', 
+  darkMode: 'class',
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -11,9 +11,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#1E40AF', 
+        primary: '#1E40AF',
       },
+
     },
+    "animation": {
+      shimmer: "shimmer 2s linear infinite"
+    },
+    "keyframes": {
+      shimmer: {
+        from: {
+          "backgroundPosition": "0 0"
+        },
+        to: {
+          "backgroundPosition": "-200% 0"
+        }
+      }
+    }
   },
   plugins: [],
 };

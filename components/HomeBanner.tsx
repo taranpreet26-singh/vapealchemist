@@ -9,8 +9,6 @@ const isSafari = () => {
 
 export default function HomeBanner() {
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [loading, setLoading] = useState(false);
-
     useEffect(() => {
         const handleUserInteraction = () => {
             const video = videoRef.current
@@ -27,14 +25,7 @@ export default function HomeBanner() {
         window.addEventListener("touchstart", handleUserInteraction);
         window.addEventListener("keydown", handleUserInteraction);
         videoRef.current?.play()
-        if (window.innerWidth <= 1024) {
-            setLoading(true);
-            setTimeout(() => {
-                setLoading(false);
-                
-            }, 2000);
-            window.scroll({ top: 10, behavior: "smooth" })
-        }
+       
         return () => {
             window.removeEventListener("click", handleUserInteraction);
             window.removeEventListener("touchstart", handleUserInteraction);
@@ -68,11 +59,5 @@ export default function HomeBanner() {
                 <source src="/video/smoke.mp4" type="video/mp4" />
             </video>
         </div>
-        {loading && (
-            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
-                <Loader text="Preparing your puffs....." />
-            </div>
-        )}
-
     </section>
 }

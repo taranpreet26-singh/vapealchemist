@@ -4,23 +4,32 @@ import { Lens } from "../ui/lens";
 import { motion } from "motion/react";
 import { cn } from "@/libs/utils";
 import Image from "next/image";
+import { ProductStatus } from "@/app/generated/prisma";
+import { Category } from "@/libs/types";
+import { useRouter } from "next/navigation";
 
-type objectVapesType = {
-    name:string,
-    shortInfo:string,
-    puffs:string,
-    nicotineStrength:string,
-    eLiquidCapacity:string,
-    battery:string,
-    features:string[],
-    flavors:string[],
-    img:string
+export type objectVapesType = {
+    id:string,
+    name: string,
+    shortInfo: string,
+    puffs: string,
+    nicotineStrength: string,
+    eLiquidCapacity: string,
+    battery: string,
+    features: string[],
+    flavors: string[],
+    img: string,
+    status : ProductStatus,
+    category :Category,
+    price:string,
+    discount:string
 }
 
 export function LensCard({data}:{data:objectVapesType}) {
   const [hovering, setHovering] = useState(false);
+  const router = useRouter()
   return (
-    <div className="w-fit h-full p-4">
+    <div className="w-fit h-full py-4 lg:p-3 xl:p-4 cursor-pointer" onClick={()=>{router.push(`/products/product/${data.id}`)}}>
       <div className="w-full h-full relative rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-8 ">
         <Rays />
         <Beams />
@@ -56,7 +65,7 @@ export function LensCard({data}:{data:objectVapesType}) {
 }
 
 
-const Beams = () => {
+export const Beams = () => {
   return (
     <svg
       width="380"
@@ -144,7 +153,7 @@ const Beams = () => {
   );
 };
 
-const Rays = ({ className }: { className?: string }) => {
+export const Rays = ({ className }: { className?: string }) => {
   return (
     <svg
       width="380"

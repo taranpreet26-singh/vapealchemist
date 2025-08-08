@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export default function Products() {
 
     const router = useParams()
-
+    console.log(router)
     const [data, setData] = useState<objectVapesType>([])
     const [nameOfProduct, setNameOfProduct] = useState<string>("")
     const [isLoaded, setLoaded] = useState<boolean>(false)

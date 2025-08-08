@@ -15,6 +15,8 @@ export async function POST(req: NextRequest) {
         const formData = await req.formData()
         const file = formData.get('file') as File
         const name = formData.get('name')
+        const price = formData.get('price')
+        const discount = formData.get('discount')
         const status = formData.get('status')
         const category = formData.get('category')
         const shortInfo = formData.get('shortInfo')
@@ -26,9 +28,10 @@ export async function POST(req: NextRequest) {
         const flavors = formData.get('flavors')
         const stringFile = formData.get("stringFile") as string
         console.log(stringFile)
-        console.log(category)
+        console.log(typeof price)
+        console.log(typeof discount)
         if (file) {
-            if (!file || typeof name !== "string"  || typeof name !== "string" || typeof category !== "string"  || typeof shortInfo !== "string" || typeof puff !== "string" || typeof nicotineStrength !== "string"
+            if (!file || typeof name !== "string"  || typeof name !== "string" || typeof price !== "string" || typeof discount !== "string" || typeof status !== "string" || typeof category !== "string"  || typeof shortInfo !== "string" || typeof puff !== "string" || typeof nicotineStrength !== "string"
                 || typeof eLiquidCapacity !== "string" || typeof battery !== "string" || typeof features !== "string" || typeof flavors !== "string"
             ) {
                 return NextResponse.json({ msg: "Invalid form data" }, { status: 400 });
@@ -49,26 +52,30 @@ export async function POST(req: NextRequest) {
                 update: {
                     img: uploadedResponse?.secure_url,
                     shortInfo,
+                    price:price,
+                    discount:discount,
                     puffs: puff,
                     nicotineStrength: nicotineStrength,
                     eLiquidCapacity: eLiquidCapacity,
                     features: features,
                     flavors: flavors,
                     battery: battery,
-                    status:Number(status) === 0 ? "Latest" : "Old",
+                    status:status as "Latest" | "Old",
                     category:category as Category
                 },
                 create: {
                     name: name,
                     img: uploadedResponse?.secure_url,
                     shortInfo,
+                    price:price,
+                    discount:discount,
                     puffs: puff,
                     nicotineStrength: nicotineStrength,
                     eLiquidCapacity: eLiquidCapacity,
                     features: features,
                     flavors: flavors,
                     battery: battery,
-                    status:Number(status) === 0 ? "Latest" : "Old",
+                    status:status as "Latest" | "Old",
                     category:category as Category
                 },
                 where: {
@@ -92,8 +99,8 @@ export async function POST(req: NextRequest) {
                 })
             }
         } else {
-            if (!stringFile || typeof name !== "string" || typeof shortInfo !== "string" || typeof category !== "string" || typeof puff !== "string" || typeof nicotineStrength !== "string"
-                || typeof eLiquidCapacity !== "string" || typeof battery !== "string" || typeof features !== "string" || typeof flavors !== "string") {
+            if (!stringFile || typeof name !== "string" || typeof shortInfo !== "string" || typeof status !== "string" || typeof category !== "string" || typeof puff !== "string" || typeof nicotineStrength !== "string"
+                || typeof eLiquidCapacity !== "string" || typeof price !== "string" || typeof discount !== "string" || typeof battery !== "string" || typeof features !== "string" || typeof flavors !== "string") {
                 return NextResponse.json({ msg: "Invalid form data" }, { status: 400 });
             }
 
@@ -106,12 +113,14 @@ export async function POST(req: NextRequest) {
                     img: stringFile,
                     shortInfo,
                     puffs: puff,
+                    price:price,
+                    discount:discount,
                     nicotineStrength: nicotineStrength,
                     eLiquidCapacity: eLiquidCapacity,
                     features: features,
                     flavors: flavors,
                     battery: battery,
-                    status:Number(status) === 0 ? "Latest" : "Old",
+                    status:status as "Latest" | "Old",
                     category:category as Category
 
                 },
@@ -119,19 +128,23 @@ export async function POST(req: NextRequest) {
                     name: name,
                     img: stringFile,
                     shortInfo,
+                    price:price,
+                    discount:discount,
                     puffs: puff,
                     nicotineStrength: nicotineStrength,
                     eLiquidCapacity: eLiquidCapacity,
                     features: features,
                     flavors: flavors,
                     battery: battery,
-                    status:Number(status) === 0 ? "Latest" : "Old",
+                    status:status as "Latest" | "Old",
                     category:category as Category
                 },
                 select: {
                     id: true,
                     status:true,
-                    category:true
+                    category:true,
+                    price:true,
+                    discount:true
                 }
             })
             console.log(response)

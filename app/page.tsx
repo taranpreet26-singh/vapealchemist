@@ -19,7 +19,6 @@ export default function Home() {
         <LocationImages/>
         <FeatureSectionGlowingStar/>
         <AboutUs/>
-        <Footer/>
       </section>
   );
 }

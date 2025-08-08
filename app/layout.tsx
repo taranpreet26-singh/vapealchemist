@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { NavbarResizable } from "@/components/NavbarResizable";
 import { ThemeProvider } from "@/libs/theme-provider";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,8 +35,10 @@ export default function RootLayout({
       defaultTheme="dark"
       >
         <NavbarResizable/>
-
+        <main>
         {children}
+        </main>
+        <Footer/>
         </ThemeProvider>
       </body>
     </html>
