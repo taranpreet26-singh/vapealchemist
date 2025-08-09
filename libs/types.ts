@@ -19,6 +19,7 @@ export type objectVapesType = {
 
 
 export type objectVapesTypeSingle = {
+    id:string,
     name: string,
     shortInfo: string,
     puffs: string,
