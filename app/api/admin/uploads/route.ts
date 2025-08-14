@@ -192,10 +192,10 @@ export async function GET(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
     try {
-        const { name } = await req.json()
-        console.log(name)
+        const { currentName } = await req.json()
+        console.log(currentName)
         const response = await prisma.product.findFirst({
-            where: { name },
+            where: { name:currentName },
             select: { id: true }
         })
 
@@ -205,12 +205,12 @@ export async function DELETE(req: NextRequest) {
             })
         } else {
             const deleteResponse = await prisma.product.delete({
-                where: { name },
+                where: { name:currentName },
                 select: { name: true }
             })
             if (deleteResponse.name) {
                 return NextResponse.json({
-                    msg: `${name} is Deleted`
+                    msg: `${deleteResponse.name} is Deleted`
                 })
             } else {
                 return NextResponse.json({

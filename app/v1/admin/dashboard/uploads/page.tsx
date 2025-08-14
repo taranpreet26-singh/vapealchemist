@@ -99,7 +99,7 @@ export default function UploadComponent() {
 
     useEffect(() => {
         fetchAllComponent()
-    }, [refresh])
+    }, [refresh,loading])
 
 
     async function uploadComponent() {
@@ -107,8 +107,7 @@ export default function UploadComponent() {
             setLoading("Loading....")
             if ((file || fileUpdate) && name != "" && price !== 0 && price !== "" && discount !== 0 && discount !== ""  && status && category  && shortInfo != "" && puff != "" && nicotineStrength != "" && eLiquidCapacity != "" && battery != "" && features.length > 0 && flavorArr.length > 0) {
                 const formData = new FormData()
-                alert(discount)
-                alert(price)
+                alert("Process is begin")
                 if (update && fileUpdate) {
                     formData.append("stringFile", fileUpdate)
                 } else if (!update && file) {
@@ -127,8 +126,8 @@ export default function UploadComponent() {
                 formData.append("features", JSON.stringify(features))
                 formData.append("flavors", JSON.stringify(flavorArr))
                 const response = await axios.post('/api/admin/uploads', formData)
-                console.log(response)
                 toast.success(response.data.msg)
+                setRefresh(true)
             } else {
                 console.log(status , category)
                 toast.error("Please fill all the fields")
@@ -142,13 +141,16 @@ export default function UploadComponent() {
         }
     }
 
-    async function deleteComponent() {
+    useEffect(()=>{
+
+    },[refresh])
+
+    async function deleteComponent(currentName:string) {
         try {
-            alert("process beign")
-            if (name) {
-                console.log(name)
+            setRefresh(false)
+            if (currentName) {
                 const response = await axios.delete('/api/admin/uploads', {
-                    data: { name }
+                    data: { currentName }
                 })
                 if (response.status) {
                     toast.success(response.data.msg)
@@ -156,6 +158,7 @@ export default function UploadComponent() {
                     toast.error(response.data.msg)
                 }
             }
+            setRefresh(true)
         } catch (error) {
             console.log(error)
             toast.error("Error")
@@ -163,7 +166,6 @@ export default function UploadComponent() {
             setRefresh(true)
         }
     }
-
 
     const addFeature = () => {
         if (featureInput.trim() !== "") {
@@ -275,7 +277,7 @@ export default function UploadComponent() {
                         <div className="w-full mt-6 flex flex-col gap-2 h-fit">
                             <label htmlFor="name" className="text-lg font-semibold ">Name</label>
                             {
-                                update ?
+                                update?
                                     <input type="text" name="name" id="name" value={name} disabled onChange={(e) => { setName(e.target.value) }} className="border-[0.5px] p-1 cursor-not-allowed  border-neutral-800 rounded-sm bg-transparent text-white" />
                                     :
                                     <input type="text" name="name" id="name" value={name} onChange={(e) => { setName(e.target.value) }} className="border-[0.5px] p-1  border-neutral-800 rounded-sm bg-transparent text-white" />
@@ -482,15 +484,14 @@ export default function UploadComponent() {
                         allComponent?.map((element, index) => {
                             return <div className="w-full h-full" key={index}>
                                 <div className="flex gap-2 justify-end px-6 w-full">
-                                    <div onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" });  setUpdate(true); setCategory(element.category); setPrice(element.price); setDiscount(element.discount); setName(element.name); setStatus(element.status as ProductStatus); setShortInfo(element.shortInfo); setFileUpdate(element.img) ; setPuff(element.puffs); setEliquidCapacity(element.eLiquidCapacity); setNicotineStrength(element.nicotineStrength); setBattery(element.battery); setFeatures(JSON.parse(element.features.toString())); setFlavorArr(JSON.parse(element.flavors.toString())) }} className="relative group">
+                                    <div onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" });  setUpdate(true); setCategory(element.category); setPrice(element.price); setDiscount(element.discount); setName(element.name); setStatus(element.status as ProductStatus); setShortInfo(element.shortInfo); setFileUpdate(element.img) ; setPuff(element.puffs); setEliquidCapacity(element.eLiquidCapacity); setNicotineStrength(element.nicotineStrength); setBattery(element.battery); setFeatures(JSON.parse(element.features.toString())); setFlavorArr(JSON.parse(element.flavors.toString())) }} className="relative group border border-px border-neutral-700 rounded-full p-1">
                                         <Pencil size={20} className="cursor-pointer" />
                                         <motion.span
                                             className="absolute bottom-full mb-1 hidden group-hover:flex px-2 py-1 text-xs text-white bg-black rounded">
                                             Update
                                         </motion.span>
                                     </div>
-
-                                    <div onClick={()=>{setName(element.name); deleteComponent() }} className="relative group">
+                                    <div onClick={()=>{deleteComponent(element.name) }} className="relative border border-px border-neutral-700 rounded-full p-1 group">
                                         <Trash size={20} className="cursor-pointer" />
                                         <span className="absolute bottom-full mb-1 hidden group-hover:flex px-2 py-1 text-xs text-white bg-black rounded">
                                             Delete

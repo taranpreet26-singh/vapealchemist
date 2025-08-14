@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../app/generated/prisma"
@@ -14,28 +8,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model Admin{
-  id String @unique @default(uuid())
-  email String 
+model Admin {
+  id       String @unique @default(uuid())
+  email    String
   password String
 }
 
-model Product{
-  id String @unique @default(uuid())
-  name String @unique
-  shortInfo String
-  puffs String
+model Product {
+  id               String        @unique @default(uuid())
+  name             String        @unique
+  shortInfo        String
+  puffs            String
   nicotineStrength String
-  eLiquidCapacity String
-  battery String
-  features String
-  flavors String
-  img String
-  status ProductStatus @default(Latest)
-  category Category @default(Disposables)
-  price String @default("0")
-  discount String @default("0")
+  eLiquidCapacity  String
+  battery          String
+  features         String
+  flavors          String
+  img              String
+  status           ProductStatus @default(Latest)
+  category         Category      @default(Disposables)
+  discount         String        @default("0")
+  price            String        @default("0")
 }
 
 enum Category {

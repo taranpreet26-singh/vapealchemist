@@ -1,5 +1,5 @@
 "use client";
-import React, { JSX, useState } from "react";
+import React, { JSX, useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/libs/utils";
 
@@ -23,20 +23,26 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
     setLastSelected(selected);
     setSelected(null);
   };
-
+  
+  useEffect(()=>{
+    window.addEventListener('click',handleOutsideClick)
+    return ()=>{ 
+      window.addEventListener('click',handleOutsideClick)
+    }
+  },[selected])
   return (
-    <div className="w-full h-full p-6 grid grid-cols-1 md:grid-cols-3   max-w-7xl mx-auto gap-4 relative">
+    <div className="w-full h-full p-6 grid grid-cols-1 md:grid-cols-3   gap-4 relative">
       {cards.map((card, i) => (
         <div key={i} className={cn(card.className, "")}>
           <motion.div
-            onClick={() => handleClick(card)}
+            onClick={(e) =>{handleClick(card); e.stopPropagation();}}
             className={cn(
               card.className,
               "relative  overflow-hidden",
               selected?.id === card.id
                 ? "rounded-lg cursor-pointer  absolute inset-0 h-3/4 w-[calc(100%-30px)] md:w-3/4 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
                 : lastSelected?.id === card.id
-                ? "z-40 bg-white rounded-xl   h-full w-full"
+                ? "z-20 bg-white rounded-xl   h-full w-full"
                 : "bg-white rounded-xl  h-full w-full"
             )}
             layoutId={`card-${card.id}`}
@@ -66,7 +72,7 @@ const ImageComponent = ({ card }: { card: Card }) => {
       height="500"
       width="500"
       className={cn(
-        "object-cover object-top  absolute inset-0 h-full w-full transition duration-200"
+        "object-cover grayscale-75 object-top  absolute inset-0 h-full w-full transition duration-200"
       )}
       alt="thumbnail"
     />

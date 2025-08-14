@@ -6,10 +6,10 @@ import { GlowingStarsBackgroundCard, GlowingStarsDescription, GlowingStarsTitle 
 export function FeatureSectionGlowingStar() {
     return (
         <section className="w-full h-fit py-20 lg:py-10 px-8 lg:px-20">
-            <h2 className="max-w-7xl pl-4 mx-auto mb-10 text-3xl lg:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
+            <h2 className=" mb-10 text-3xl lg:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
                 What Makes Us Different
             </h2>
-            <div className=" py-10 flex flex-wrap items-center justify-center md:grid md:grid-cols-2  gap-5 lg:grid-cols-3 antialiased">
+            <div className=" flex flex-wrap items-center justify-center md:grid md:grid-cols-2  gap-5 lg:grid-cols-3 antialiased">
                 <GlowingStarsBackgroundCard>
                     <GlowingStarsTitle>Customer First</GlowingStarsTitle>
                     <div className="flex justify-between items-end">
@@ -32,10 +32,10 @@ export function FeatureSectionGlowingStar() {
                     </div>
                 </GlowingStarsBackgroundCard>
                 <GlowingStarsBackgroundCard>
-                    <GlowingStarsTitle>Explore | Enjoy | Elevate</GlowingStarsTitle>
+                    <GlowingStarsTitle>Committed to value</GlowingStarsTitle>
                     <div className="flex justify-between items-end">
                         <GlowingStarsDescription>
-                            Discover premium vapes, enjoy bold flavors, and elevate every puff.
+                            We will match and surpass any competitor&apos;s price.
                         </GlowingStarsDescription>
                         <div className="h-8 w-8 rounded-full bg-[hsla(0,0%,100%,.1)] flex items-center justify-center">
                             <Icon />

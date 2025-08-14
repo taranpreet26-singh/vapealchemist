@@ -10,8 +10,8 @@ export function OurProductCardsCarouselDemo() {
   ));
 
   return (
-    <div className="w-full h-full py-20">
-      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
+    <div className="w-full h-full py-20 lg:py-10 px-8 lg:px-20">
+      <h2 className="text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
         Our Products.
       </h2>
       <Carousel items={cards} />
@@ -83,26 +83,26 @@ const data = [
   {
     category: "Disponsals Zone",
     title: "Puff & Go",
-    src: "/images/disposals.png",
+    src: "/images/Disposables-img.png",
     content: <DummyContent image="/images/seventh.png" title="Puff & Go" category="" />,
   },
   {
     category: "E-Juice Zone",
     title: "Drip Central",
-    src: "/images/e-juice.png",
+    src: "/images/E-Juices-img.png",
     content: <DummyContent image="/images/fourth.png" title="Drip Central" category="" />,
   },
   {
     category: "Devices Zone",
     title: "Vape Arsenal",
-    src: "/images/devices.png",
+    src: "/images/Devices-img.png",
     content: <DummyContent image="/images/third.png" title="Vape Arsenal" category="" />,
   },
 
   {
     category: "",
     title: "",
-    src: "/images/accessories.png",
+    src: "/images/Accessories-img.png",
     content: <DummyContent image="/images/fifth.png" title="Vape Arsenal" category="" />,
   },
 

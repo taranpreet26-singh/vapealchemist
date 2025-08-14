@@ -52,7 +52,7 @@ export default function Products() {
             </h2>
             {
                 !isLoaded ?
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:p-10 lg:gap-15">
+                    <div className="flex flex-col items-center md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-0 lg:p-10 ">
                         {
                             filterData.map((element, index) => {
                                 return <LensCard key={index} data={element} />

@@ -65,9 +65,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
     useMotionValueEvent(scrollY, "change", (latest) => {
             if (latest > prevLocation && latest > 100) {
                 setVisible(true);
-                console.log("true")
             } else {
-                console.log("false")
                 setVisible(false);
             }
         setPrevLocation(latest)
@@ -249,7 +247,7 @@ export const NavbarLogo = () => {
                 width={40}
                 height={30}
             />
-            <span className="font-medium text-black font-sans text-xl dark:text-white">Zenvape</span>
+            <span className="font-medium text-black font-sans text-xl dark:text-white">Vape Alchemist</span>
         </Link>
     );
 };
