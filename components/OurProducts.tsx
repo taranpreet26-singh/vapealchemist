@@ -81,7 +81,7 @@ const data = [
     content: <DummyContent image="/images/first.png" title="Fresh Drops" category="Fresh Drops" />,
   },
   {
-    category: "Disponsals Zone",
+    category: "Disposables Zone",
     title: "Puff & Go",
     src: "/images/Disposables-img.png",
     content: <DummyContent image="/images/seventh.png" title="Puff & Go" category="" />,
