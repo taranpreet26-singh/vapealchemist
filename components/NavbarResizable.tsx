@@ -69,9 +69,9 @@ export function NavbarResizable() {
           <NavItems items={navItems} />
           <div className="flex items-center ">
             <NavbarButton onClick={() => { router.push('/contact-us') }} variant="secondary">
-              <div className="relative  border border-px border-zinc-800 bg-zinc-700 rounded-full p-[5px]">
+              <div className="relative   border border-px border-zinc-300 bg-zinc-700 rounded-full p-[5px]">
                 <CartButton />
-                <div className="absolute top-0 mx-auto px-1 left-2 inset-x-0 bg-amber-50 w-fit h-fit text-black rounded-full text-[10px]">{count}</div>
+                <div className="absolute  -top-[0.5px] mx-auto px-1 left-3 inset-x-0 bg-amber-50 font-bold w-fit h-fit text-black rounded-full text-xs">{count}</div>
               </div>
             </NavbarButton>
             <NavbarButton variant="gradient" onClick={() => { router.push('/contact-us') }}>Book a call</NavbarButton>
@@ -127,5 +127,5 @@ export function NavbarResizable() {
 
 
 const CartButton = () => {
-  return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-shopping-cart"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>
+  return <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon  icon-tabler icons-tabler-outline icon-tabler-shopping-cart"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>
 }

@@ -15,7 +15,7 @@ import toast, { Toaster } from "react-hot-toast"
 import TopSelling from "@/components/TopSelling"
 
 interface objectVapesType extends objectVapesTypeSingle {
-    count:number
+    count: number
 }
 
 export default function Product() {
@@ -27,6 +27,7 @@ export default function Product() {
         try {
             const response = await axios.get(`/api/user/product?id=${router.productId}`)
             setData(response.data.msg)
+            console.log(response.data)
         } catch (error) {
         }
     }
@@ -63,16 +64,25 @@ export default function Product() {
                                     <StarsBackground />
                                 </div>
                             </Lens>
-                            <div className="hidden md:flex w-full flex-col xl:flex-row xl:justify-between xl:items-center gap-5">
+                            <div className="hidden md:flex w-full flex-col  gap-5">
                                 <div className="mt-4 ">
                                     <h2 className={`max-w-7xl text-lg lg:text-xl font-semibold  dark:text-neutral-200 font-sans`}>
                                         Vape Lowdown
                                     </h2>
-                                    <ul className="p-2  min-w-xs text-sm">
-                                        <li className="flex gap-4"><RightArrow /> {data.puffs} Puffs.</li>
+                                    <ul className="p-2  min-w-xs text-sm lg:text-lg font-normal">
+                                        <li className="flex gap-4"><RightArrow /> {data.puffs}</li>
+                                        {
+                                            data.nicotineStrength !== "" &&
                                         <li className="flex gap-4"><RightArrow /> {data.nicotineStrength} Nicotine Strength.</li>
+                                        }
+                                        {
+                                            data.eLiquidCapacity !== "" &&
                                         <li className="flex gap-4"><RightArrow /> {data.eLiquidCapacity} E-Liquid Capacity.</li>
+                                        }
+                                        {
+                                            data.battery !=="" && 
                                         <li className="flex gap-4"><RightArrow /> {data.battery} Battery Life.</li>
+                                        }
                                     </ul>
                                 </div>
                                 <div className="mt-4">
@@ -82,7 +92,7 @@ export default function Product() {
                                     <ul className="flex flex-col  gap-2 p-2">
                                         {
                                             JSON.parse(data.features.toString())?.map((element: string, index: string) => {
-                                                return <li key={index} className="flex text-sm gap-4"><Disk /> {element}</li>
+                                                return <li key={index} className="flex text-sm font-normal lg:text-lg gap-4"><Disk /> {element}</li>
                                             })
                                         }
                                     </ul>
@@ -103,8 +113,11 @@ export default function Product() {
                                     </div>
                                 }
                             </div>
-                            <h2 className="max-w-7xl  text-3xl lg:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
+                            <h2 className="max-w-7xl  text-3xl lg:text-5xl font-bold text-neutral-200 font-sans">
                                 {data?.name}
+                            </h2>
+                            <h2 className="max-w-7xl text-xs sm:text-sm lg:text-lg font-medium text-neutral-200/70 font-sans">
+                                {data?.shortInfo}
                             </h2>
                             <div className="flex mt-4 gap-4">
                                 <h2 className={`max-w-7xl text-lg ${data.discount !== "0" ? "line-through decoration-neutral-300 decoration-[1.5px]" : ""}  lg:text-xl font-bold text-neutral-800 dark:text-neutral-200 font-sans`}>
@@ -130,9 +143,9 @@ export default function Product() {
                                 </ul>
                             </div>
                             <div className="flex flex-col gap-2 py-8 lg:py-6">
-                                <motion.div 
-                                whileTap={{scale:0.85}}
-                                transition={{type:"spring",stiffness:300,damping:30}}
+                                <motion.div
+                                    whileTap={{ scale: 0.85 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                 >
                                     <ActionButton onClick={handleLocalStorage} key={1} parentClassName="cursor-pointer hover:bg-neutral-900">
                                         <div className="flex  items-center gap-1 justify-center">
@@ -149,19 +162,28 @@ export default function Product() {
                             </div>
                             <div className="flex md:hidden w-full flex-col xl:flex-row xl:justify-between xl:items-center gap-5">
                                 <div className="mt-4 ">
-                                    <h2 className={`max-w-7xl text-lg lg:text-xl font-semibold  dark:text-neutral-200 font-sans`}>
+                                    <h2 className={`max-w-7xl text-lg lg:text-xl font-semibold  text-neutral-200 font-sans`}>
                                         Vape Lowdown
                                     </h2>
                                     <ul className="p-2  min-w-xs text-sm">
-                                        <li className="flex gap-4"><RightArrow /> {data.puffs} Puffs.</li>
-                                        <li className="flex gap-4"><RightArrow /> {data.nicotineStrength} Nicotine Strength.</li>
-                                        <li className="flex gap-4"><RightArrow /> {data.eLiquidCapacity} E-Liquid Capacity.</li>
-                                        <li className="flex gap-4"><RightArrow /> {data.battery} Battery Life.</li>
+                                        <li className="flex gap-4"><RightArrow /> {data.puffs} </li>
+                                        {
+                                            data.nicotineStrength !== "" &&
+                                            <li className="flex gap-4"><RightArrow /> {data.nicotineStrength !== "" && data.nicotineStrength} Nicotine Strength.</li>
+                                        }
+                                        {
+                                            data.eLiquidCapacity !== "" &&
+                                            <li className="flex gap-4"><RightArrow /> {data.eLiquidCapacity} E-Liquid Capacity.</li>
+                                        }
+                                        {
+                                            data.battery !== "" &&
+                                            <li className="flex gap-4"><RightArrow /> {data.battery} Battery Life.</li>
+                                        }
                                     </ul>
                                 </div>
                                 <div className="mt-4">
                                     <h2 className={`max-w-7xl text-lg lg:text-xl font-semibold  dark:text-neutral-200 font-sans`}>
-                                        Core Features
+                                        Core Features 
                                     </h2>
                                     <ul className="flex flex-col  gap-2 p-2">
                                         {
@@ -174,6 +196,7 @@ export default function Product() {
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 :
                 <div className="py-20 lg:py-10 px-6 lg:px-20">
@@ -255,10 +278,10 @@ export default function Product() {
                     </div>
                 </div>
         }
-        <TopSelling/>
+        <TopSelling />
         <FeatureSectionGlowingStar />
         <AboutUs />
-        <Toaster position="top-right"/>
+        <Toaster position="top-right" />
     </section>
 }
 
@@ -286,7 +309,7 @@ const FlavorButton = ({ children }: { children: React.ReactNode }) => {
     return <button className="relative inline-flex h-fit overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
         <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
         <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 
-        py-[4px] text-xs font-medium text-white backdrop-blur-3xl">
+        py-[4px] text-sm font-bold text-white backdrop-blur-3xl">
             {children}
         </span>
     </button>

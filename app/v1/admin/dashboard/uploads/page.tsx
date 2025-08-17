@@ -103,7 +103,7 @@ export default function UploadComponent() {
     async function uploadComponent() {
         try {
             setLoading("Loading....")
-            if ((file || fileUpdate) && name != "" && price !== 0 && price !== "" && discount !== 0 && discount !== ""  && status && category  && shortInfo != "" && puff != "" && nicotineStrength != "" && eLiquidCapacity != "" && battery != "" && features.length > 0 && flavorArr.length > 0) {
+            if ((file || fileUpdate) && name != "" && price !== 0 && price !== "" && discount !== ""  && status && category  && shortInfo != "" && puff != ""  && features.length > 0 && flavorArr.length > 0) {
                 const formData = new FormData()
                 alert("Process is begin")
                 if (update && fileUpdate) {
@@ -304,7 +304,7 @@ export default function UploadComponent() {
                         </div>
                     <div className="flex gap-4">
                         <div className="w-full mt-6 flex flex-col gap-2 h-fit">
-                            <label htmlFor="puff" className="text-lg font-semibold ">Puff</label>
+                            <label htmlFor="puff" className="text-lg font-semibold ">Puff/Other Info</label>
                             <input type="text" name="puff" id="puff" value={puff} onChange={(e) => { setPuff(e.target.value) }} className="border-[0.5px] p-1  border-neutral-800 rounded-sm bg-transparent text-white" />
                         </div>
                         <div className="w-full mt-6 flex flex-col gap-2 h-fit">

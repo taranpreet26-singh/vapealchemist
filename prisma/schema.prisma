@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Admin {
-  id       String @unique @default(uuid())
+  id       String @id @unique @default(uuid())
   email    String
   password String
 }
