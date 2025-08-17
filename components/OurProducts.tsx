@@ -101,7 +101,7 @@ const data = [
 
   {
     category: "",
-    title: "Accessorie",
+    title: "Accessory",
     src: "/images/Accessories-img.png",
     content: <DummyContent image="/images/fifth.png" title="Vape Arsenal" category="" />,
   },
