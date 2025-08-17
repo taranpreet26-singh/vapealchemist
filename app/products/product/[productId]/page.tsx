@@ -27,7 +27,6 @@ export default function Product() {
         try {
             const response = await axios.get(`/api/user/product?id=${router.productId}`)
             setData(response.data.msg)
-            console.log(response.data)
         } catch (error) {
         }
     }
