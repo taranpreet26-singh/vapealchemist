@@ -81,7 +81,7 @@ const data = [
     content: <DummyContent image="/images/first.png" title="Fresh Drops" category="Fresh Drops" />,
   },
   {
-    category: "Disposables Zone",
+    category: "Disposable Zone",
     title: "Puff & Go",
     src: "/images/Disposables-img.png",
     content: <DummyContent image="/images/seventh.png" title="Puff & Go" category="" />,
@@ -93,7 +93,7 @@ const data = [
     content: <DummyContent image="/images/fourth.png" title="Drip Central" category="" />,
   },
   {
-    category: "Devices Zone",
+    category: "Device Zone",
     title: "Vape Arsenal",
     src: "/images/Devices-img.png",
     content: <DummyContent image="/images/third.png" title="Vape Arsenal" category="" />,
@@ -101,7 +101,7 @@ const data = [
 
   {
     category: "",
-    title: "",
+    title: "Accessorie",
     src: "/images/Accessories-img.png",
     content: <DummyContent image="/images/fifth.png" title="Vape Arsenal" category="" />,
   },

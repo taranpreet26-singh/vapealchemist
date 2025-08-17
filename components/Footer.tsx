@@ -11,7 +11,7 @@ export default function Footer() {
         {name:"Accessories",href:"/products/accessories"},
     ];
     const policies = [{name:"Contact-us",href:"/contact-us"},{name:"Email",href:"mailto:vapealchemist01@gmail.com"},{name:"Phone",href:"tel:604-491-0935"}]
-    const socialMedia = [{name:'Instagram',href:"https://www.instagram.com/vape.alchemist/"}]
+    const socialMedia = [{name:'Instagram',href:"https://www.instagram.com/vapealchemist1/"}]
     return <footer className="border-y-[1px] relative  border-neutral-700 w-full h-1/2 lg:h-full px-4 lg:px-20 py-10"> 
         <div className="w-full h-fit flex flex-col lg:flex-row gap-6 lg:gap-40">
             <div className="flex items-start flex-col w-full  mb-4 lg:mb-0  gap-2">
