@@ -17,11 +17,9 @@ export default function LatestProduct() {
   async function fetch() {
     try {
       const resposne = await axios.get('/api/latestproduct?status=Latest')
-      console.log(resposne)
       setData(resposne.data.msg)
       setLoading(true)
     } catch (error) {
-      console.log(error)
     }
   }
   useEffect(() => {

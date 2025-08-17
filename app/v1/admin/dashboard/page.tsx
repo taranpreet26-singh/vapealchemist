@@ -37,7 +37,6 @@ export default function Dashboard() {
                 toast.error("Please fill all the fields")
             }
         } catch (error) {
-            console.log(error)
         } finally {
             setLoading(null)
         }
@@ -45,7 +44,6 @@ export default function Dashboard() {
 
     function handleCredential(e: ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target
-        console.log(name, value)
         setCredential(prev => ({
             ...prev,
             [name]: value

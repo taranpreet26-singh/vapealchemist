@@ -7,7 +7,6 @@ export async function GET(req:NextRequest) {
     try {
         const {searchParams} =  new URL(req.url)
         const status = searchParams.get('status')
-        console.log(status)
         if(status){
             const response = await prisma.product.findMany({
                 where:{
@@ -22,6 +21,5 @@ export async function GET(req:NextRequest) {
             })     
         }
     } catch (error) {
-        console.log(error)
     }
 }

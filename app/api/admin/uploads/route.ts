@@ -11,7 +11,6 @@ enum ProductStatus {
 }
 export async function POST(req: NextRequest) {
     try {
-        console.log("enter")
         const formData = await req.formData()
         const file = formData.get('file') as File
         const name = formData.get('name')
@@ -27,9 +26,6 @@ export async function POST(req: NextRequest) {
         const features = formData.get('features')
         const flavors = formData.get('flavors')
         const stringFile = formData.get("stringFile") as string
-        console.log(stringFile)
-        console.log(typeof price)
-        console.log(typeof discount)
         if (file) {
             if (!file || typeof name !== "string"  || typeof name !== "string" || typeof price !== "string" || typeof discount !== "string" || typeof status !== "string" || typeof category !== "string"  || typeof shortInfo !== "string" || typeof puff !== "string" || typeof nicotineStrength !== "string"
                 || typeof eLiquidCapacity !== "string" || typeof battery !== "string" || typeof features !== "string" || typeof flavors !== "string"
@@ -86,7 +82,6 @@ export async function POST(req: NextRequest) {
                     status:true
                 }
             })
-            console.log(response)
             if (response.id) {
                 return NextResponse.json({
                     status: 200,
@@ -147,7 +142,6 @@ export async function POST(req: NextRequest) {
                     discount:true
                 }
             })
-            console.log(response)
             if (response.id) {
                 return NextResponse.json({
                     status: 200,
@@ -161,7 +155,6 @@ export async function POST(req: NextRequest) {
             }
         }
     } catch (error) {
-        console.log(error)
         return NextResponse.json({
             status: 500,
             msg: "Server Error"
@@ -182,7 +175,6 @@ export async function GET(req: NextRequest) {
             msg: response
         })
     } catch (error) {
-        console.log(error)
         return NextResponse.json({
             status: 500,
             msg: "Server Error"
@@ -193,7 +185,6 @@ export async function GET(req: NextRequest) {
 export async function DELETE(req: NextRequest) {
     try {
         const { currentName } = await req.json()
-        console.log(currentName)
         const response = await prisma.product.findFirst({
             where: { name:currentName },
             select: { id: true }
@@ -221,7 +212,6 @@ export async function DELETE(req: NextRequest) {
 
 
     } catch (error) {
-        console.log(error)
         return NextResponse.json({
             status: 500,
             msg: "Server Error"

@@ -149,45 +149,43 @@ const prisma = new PrismaClient()
 async function main() {
     try {
         vapeProducts.forEach(async (element) => {
-            console.log(element.name)
-                const response = await prisma.product.upsert({
-                    where: {
-                        id: element.id
-                    },
-                    update: {
-                        img: element.img,
-                        shortInfo: element.shortInfo,
-                        puffs: element.puffs,
-                        price: element.price.toString(),
-                        discount: element.discount.toString(),
-                        nicotineStrength: element.nicotineStrength,
-                        eLiquidCapacity: element.eLiquidCapacity,
-                        features: JSON.stringify(element.features),
-                        flavors: JSON.stringify(element.flavors),
-                        battery: element.battery,
-                        status: element.status as "Latest" | "Old",
-                        category: element.category as Category
-                        
-                    },
-                    create: {
-                        name: element.name,
-                        img: element.img,
-                        shortInfo: element.shortInfo,
-                        puffs: element.puffs,
-                        price: element.price.toString(),
-                        discount: element.discount.toString(),
-                        nicotineStrength: element.nicotineStrength,
-                        eLiquidCapacity: element.eLiquidCapacity,
-                        features: JSON.stringify(element.features),
-                        flavors: JSON.stringify(element.flavors),
-                        battery: element.battery,
-                        status: element.status as "Latest" | "Old",
-                        category: element.category as Category
-                    },
-                })
+            const response = await prisma.product.upsert({
+                where: {
+                    id: element.id
+                },
+                update: {
+                    img: element.img,
+                    shortInfo: element.shortInfo,
+                    puffs: element.puffs,
+                    price: element.price.toString(),
+                    discount: element.discount.toString(),
+                    nicotineStrength: element.nicotineStrength,
+                    eLiquidCapacity: element.eLiquidCapacity,
+                    features: JSON.stringify(element.features),
+                    flavors: JSON.stringify(element.flavors),
+                    battery: element.battery,
+                    status: element.status as "Latest" | "Old",
+                    category: element.category as Category
+
+                },
+                create: {
+                    name: element.name,
+                    img: element.img,
+                    shortInfo: element.shortInfo,
+                    puffs: element.puffs,
+                    price: element.price.toString(),
+                    discount: element.discount.toString(),
+                    nicotineStrength: element.nicotineStrength,
+                    eLiquidCapacity: element.eLiquidCapacity,
+                    features: JSON.stringify(element.features),
+                    flavors: JSON.stringify(element.flavors),
+                    battery: element.battery,
+                    status: element.status as "Latest" | "Old",
+                    category: element.category as Category
+                },
+            })
         })
     } catch (error) {
-        console.log(error)
     }
 }
 

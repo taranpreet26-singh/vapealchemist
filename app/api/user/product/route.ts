@@ -5,10 +5,8 @@ import { NextRequest, NextResponse } from "next/server"
 const prisma = new PrismaClient()
 export async function GET(req:NextRequest) {
     try {
-        console.log('enter')
         const {searchParams} =  new URL(req.url)
         const id = searchParams.get('id')
-        console.log(id)
         if(id){
             const response = await prisma.product.findUnique({
                 where:{
@@ -20,6 +18,5 @@ export async function GET(req:NextRequest) {
             })     
         }
     } catch (error) {
-        console.log(error)
     }
 }

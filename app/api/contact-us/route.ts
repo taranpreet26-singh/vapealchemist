@@ -9,11 +9,7 @@ const transporter = nodemailer.createTransport({
 })
 export async function POST(req: NextRequest) {
     try {
-        console.log("enter")
         const {formData:{firstName,lastName,phone,email,subject,houseAddress,content},totalAmount,localStorageString} = await req.json()
-        console.log(firstName,lastName,email,subject,houseAddress,content,totalAmount ,localStorageString)
-        console.log(">>>>>>>>",phone)
-
         if (!firstName || !lastName || !subject || !email || !houseAddress || !content || !localStorageString || !phone) {
             return NextResponse.json({
                 msg:"Please ensure all form fields are filled out."
@@ -93,8 +89,6 @@ export async function POST(req: NextRequest) {
             status:402
         })
     }
-    
     } catch (error) {
-        console.log(error)
     }
 }

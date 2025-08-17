@@ -89,10 +89,8 @@ export default function UploadComponent() {
     async function fetchAllComponent() {
         try {
             const response = await axios.get("/api/admin/uploads")
-            console.log(response.data.msg)
             setAllComponent(response.data.msg)
         } catch (error) {
-            console.log(error)
         }
     }
 
@@ -129,11 +127,9 @@ export default function UploadComponent() {
                 toast.success(response.data.msg)
                 setRefresh(true)
             } else {
-                console.log(status , category)
                 toast.error("Please fill all the fields")
             }
         } catch (error) {
-            console.log(error)
             toast.error("Some Error Occur")
         } finally {
             setLoading(null)
@@ -160,7 +156,6 @@ export default function UploadComponent() {
             }
             setRefresh(true)
         } catch (error) {
-            console.log(error)
             toast.error("Error")
         } finally {
             setRefresh(true)

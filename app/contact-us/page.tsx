@@ -28,15 +28,11 @@ export default function ContactUs() {
                 Number(item.price) - Number(item.price) * (Number(item.discount) / 100);
             return total + priceAfterDiscount * item.count;
         }, 0);
-        console.log(subTotal)
         const afterPST = subTotal * (PST / 100)
         const afterGST = subTotal * (GST / 100)
-        console.log(afterGST)
-        console.log(afterPST)
         return subTotal + afterPST + afterGST
     };
     const total = getTotalAmount()
-    console.log(total)
     useEffect(() => {
         if (total > 0 && total < 100) {
             const remaining = (100 - total).toFixed(2);
@@ -52,7 +48,6 @@ export default function ContactUs() {
                 toast.error('No vapes here yet… even your clouds are looking confused.')
             }
         } catch (error) {
-            console.log(error)
         }
     }
     useEffect(() => {
@@ -71,7 +66,6 @@ export default function ContactUs() {
 
             }
         } catch (error) {
-            console.log(error)
         }
     }
     function handleIncrement(id: string) {
@@ -86,7 +80,6 @@ export default function ContactUs() {
                 window.dispatchEvent(new Event("cartUpdated"));
             }
         } catch (error) {
-            console.log(error)
         }
     }
     const [formData, setFormData] = useState({ firstName: "", lastName: "", subject: "", email: "", houseAddress: "", content: "",phone:""})
@@ -129,7 +122,6 @@ export default function ContactUs() {
             }
 
         } catch (error) {
-            console.log(error)
         }finally{
             setStatusSubmission(false)
         }

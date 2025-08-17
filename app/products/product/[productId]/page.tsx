@@ -22,15 +22,12 @@ export default function Product() {
     const router = useParams()
     const navigation = useRouter()
     const [hovering, setHovering] = useState(false);
-    console.log(router.productId)
     const [data, setData] = useState<objectVapesType>()
     async function fetch() {
         try {
             const response = await axios.get(`/api/user/product?id=${router.productId}`)
-            console.log(response)
             setData(response.data.msg)
         } catch (error) {
-            console.log(error)
         }
     }
 

@@ -12,7 +12,6 @@ export async function GET(req: NextRequest) {
         if(category){
             if(category !== "all"){
 
-                console.log(category.charAt(0).toUpperCase() + category.slice(1).toLowerCase())
                 const response = await prisma.product.findMany({
                     where: {
                         category: category.charAt(0).toUpperCase() + category.slice(1).toLowerCase() as Category
@@ -26,7 +25,6 @@ export async function GET(req: NextRequest) {
                     msg: response
                 })
             }else{
-                console.log(category.charAt(0).toUpperCase() + category.slice(1).toLowerCase())
                 const response = await prisma.product.findMany({
                     orderBy: {
                         name: "asc"
@@ -39,7 +37,6 @@ export async function GET(req: NextRequest) {
             }
         }
     } catch (error) {
-        console.log(error)
         return NextResponse.json({
             status: 500,
             msg: "Server Error"

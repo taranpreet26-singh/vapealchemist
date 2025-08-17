@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
 export default function Products() {
 
     const router = useParams()
-    console.log(router)
     const [data, setData] = useState<objectVapesType>([])
     const [nameOfProduct, setNameOfProduct] = useState<string>("")
     const [isLoaded, setLoaded] = useState<boolean>(false)
@@ -19,14 +18,12 @@ export default function Products() {
         try {
             setLoaded(true)
             const response = await axios.get(`/api/user?category=${router.productId}`)
-            console.log(response)
             if (response.status === 200) {
                 setData(response.data.msg)
                 setNameOfProduct(router.productId?.toString().charAt(0).toUpperCase() + router.productId?.toString().slice(1)!)
                 setLoaded(false)
             }
         } catch (error) {
-            console.log(error)
         }
     }
 

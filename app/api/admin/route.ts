@@ -6,7 +6,6 @@ const prisma = new PrismaClient()
 export async function POST(req: NextRequest) {
     try {
         const { email, password } = await req.json()
-        console.log(email, password)
         const response = await prisma.admin.findFirst({
             where: {
                 email: email,
@@ -23,7 +22,6 @@ export async function POST(req: NextRequest) {
             path: '/',
         });
 
-        console.log(response)
         if (response?.id) {
             return NextResponse.json({
                 status: 200,
@@ -37,7 +35,6 @@ export async function POST(req: NextRequest) {
             })
         }
     } catch (error) {
-        console.log(error)
         return NextResponse.json({
             status: 500,
             msg: "Server Error"

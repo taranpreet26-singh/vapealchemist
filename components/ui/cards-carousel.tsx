@@ -169,7 +169,6 @@ export const Card = ({
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") { 
-        console.log(currentIndex)
         handleClose();
       }
     }

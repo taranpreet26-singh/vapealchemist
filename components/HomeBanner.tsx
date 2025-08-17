@@ -14,7 +14,6 @@ export default function HomeBanner() {
             const video = videoRef.current
             if (video) {
                 video.play().catch(err => {
-                    console.log(err)
                 })
             }
             window.removeEventListener("click", handleUserInteraction);

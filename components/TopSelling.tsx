@@ -18,12 +18,10 @@ export default function TopSelling() {
   async function fetch() {
     try {
       const resposne = await axios.get('/api/latestproduct?status=Old')
-      console.log(resposne)
       setData(resposne.data.msg)
       setLoading(true)
 
     } catch (error) {
-      console.log(error)
     }
   }
   useEffect(() => {
