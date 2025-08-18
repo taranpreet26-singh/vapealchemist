@@ -31,7 +31,7 @@ export default function TopSelling() {
     <h2 className="max-w-7xl  mb-10 text-3xl lg:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
       Keep shopping for
     </h2>
-    <div className="md:grid flex flex-wrap flex-col items-center justify-center md:grid-cols-2 lg:grid-cols-3 ">
+    <div className="md:grid flex flex-wrap flex-col items-center justify-center md:grid-cols-2 md:gap-4 lg:gap-0 lg:grid-cols-3 ">
      { loading ?
              data.map((element, index) => {
                if (index < length)
