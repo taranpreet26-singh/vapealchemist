@@ -52,10 +52,19 @@ export function LensCard({data}:{data:objectVapesType}) {
             <h2 className="text-white text-2xl text-left font-bold">
               {data.name}
             </h2>
-            <p className="text-neutral-200 text-left  mt-4">
+            <p className="text-neutral-200 text-left   mt-4 flex flex-col gap-2">
+              <span className="flex flex-wrap ">
               {
-                data.shortInfo
+                data.shortInfo.split(" ").slice(0,30).map((element,index)=>{
+                  return <span key={index} className="px-[2px]">{element}</span>
+                }) 
               }
+              {
+                 data.shortInfo.split(" ").length >= 30
+                  &&
+              <span className="pl-1 font-semibold text-indigo-500">show more...</span>
+              }
+              </span>
             </p>
           </motion.div>
         </div>
