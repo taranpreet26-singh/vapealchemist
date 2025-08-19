@@ -103,7 +103,7 @@ export default function UploadComponent() {
     async function uploadComponent() {
         try {
             setLoading("Loading....")
-            if ((file || fileUpdate) && name != "" && price !== 0 && price !== "" && discount !== ""  && status && category  && shortInfo != "" && puff != ""  && features.length > 0 && flavorArr.length > 0) {
+            if ((file || fileUpdate) && name != "" && price !== 0 && price !== "" && discount !== ""  && status && category  && shortInfo != "" && puff != ""  && features.length > 0 ) {
                 const formData = new FormData()
                 alert("Process is begin")
                 if (update && fileUpdate) {

@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
         const features = formData.get('features')
         const flavors = formData.get('flavors')
         const stringFile = formData.get("stringFile") as string
+        console.log(flavors)
         if (file) {
             if (!file || typeof name !== "string"  || typeof name !== "string" || typeof price !== "string" || typeof discount !== "string" || typeof status !== "string" || typeof category !== "string"  || typeof shortInfo !== "string" || typeof puff !== "string" || typeof nicotineStrength !== "string"
                 || typeof eLiquidCapacity !== "string" || typeof battery !== "string" || typeof features !== "string" || typeof flavors !== "string"

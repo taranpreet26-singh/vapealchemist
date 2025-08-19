@@ -129,18 +129,21 @@ export default function Product() {
                                     </h2>
                                 }
                             </div>
+                            {
+                                JSON.parse(data.flavors.toString()).length > 0 &&
                             <div className="mt-4">
                                 <h2 className={`max-w-7xl text-lg lg:text-xl font-semibold  dark:text-neutral-200 font-sans`}>
                                     Cloud Flavors
                                 </h2>
                                 <ul className="flex flex-wrap  flex-row gap-2 p-2">
-                                    {
+                                    {  
                                         JSON.parse(data.flavors.toString())?.map((element: string, index: string) => {
                                             return <li key={index}><FlavorButton>{element}</FlavorButton></li>
                                         })
                                     }
                                 </ul>
                             </div>
+                            }
                             <div className="flex flex-col gap-2 py-8 lg:py-6">
                                 <motion.div
                                     whileTap={{ scale: 0.85 }}
