@@ -41,8 +41,13 @@ export default function LatestProduct() {
       }
     </div>
     {
-      !onClickButton && data.length > 3 &&
-      <HoverGradientButton onClick={() => { setLength(data.length); setOnClickButton(true); }} />
+      !onClickButton && 
+    <div>
+    {
+      data.length > length && 
+      <HoverGradientButton onClick={() => { setLength(prev=>prev + prev + 3); setOnClickButton(data.length <= length); }} />
+    }
+    </div>
     }
   </section>
 }
