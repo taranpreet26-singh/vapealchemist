@@ -90,13 +90,13 @@ const data = [
     category: "E-Juice Zone",
     title: "Drip Central",
     src: "/images/E-Juices-img.png",
-    content: <DummyContent image="/images/fourth.png" title="Drip Central" category="" />,
+    content: <DummyContent image="/images/e-juice-our-product.webp" title="Drip Central" category="" />,
   },
   {
     category: "Device Zone",
     title: "Vape Arsenal",
     src: "/images/Devices-img.png",
-    content: <DummyContent image="/images/third.png" title="Vape Arsenal" category="" />,
+    content: <DummyContent image="/images/devices-our-product.webp" title="Vape Arsenal" category="" />,
   },
 
   {

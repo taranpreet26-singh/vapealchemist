@@ -44,7 +44,7 @@ export default function TopSelling() {
     </div>
     {
       !onClickButton && data.length > 3 &&
-      <HoverGradientButton onClick={() => { setLength(disposableVapes.length); setOnClickButton(true); }} />
+      <HoverGradientButton onClick={() => { setLength(data.length); setOnClickButton(true); }} />
     }
   </section>
 }
