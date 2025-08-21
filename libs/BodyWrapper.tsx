@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import AgeVerificationPopup from "./AgeVerificationPopup";
 export default function BodyWrapper({ children }: { children: React.ReactNode }) {
   const [count, setCount] = useState<number>(0)
 
@@ -25,26 +26,27 @@ export default function BodyWrapper({ children }: { children: React.ReactNode })
     };
   }, []);
   return <div className="w-full h-full">
-      <ThemeProvider
-        attribute={'class'}
-        defaultTheme="dark"
-        >
-        <NavbarResizable />
-        <main>
-          {children}
-        </main>
-        <Footer />
-        <div className="flex flex-wrap gap-6 items-center p-2 justify-center">
-          <Link className="text-xs flex gap-2" href={'mailto:vapealchemist01@gmail.com'}><p className="text-white/60">Email</p><span className="text-indigo-500">vapealchemist01@gmail.com</span></Link>
-          <Link className="text-xs flex gap-2" href={'tel:604-491-0935'}><p className="text-white/60">Phone-1</p><span className="text-indigo-500">604-491-0935</span></Link>
-          <Link className="text-xs flex gap-2" href={'tel:778-869-0007'}><p className="text-white/60">Phone-2</p><span className="text-indigo-500">778-869-0007</span></Link>
-        </div>
-      </ThemeProvider>
-
-      <div onClick={() => { router.push('/contact-us') }} className="fixed z-[100] bottom-4 right-4 block lg:hidden  border border-px border-zinc-300 bg-zinc-700 rounded-full p-[5px]">
-        <CartButton />
-        <div className="absolute top-0 mx-auto px-1 left-2 inset-x-0 bg-amber-50 w-fit h-fit text-black rounded-full text-sm">{count}</div>
+    <ThemeProvider
+      attribute={'class'}
+      defaultTheme="dark"
+    >
+      <NavbarResizable />
+      <main>
+        {children}
+      </main>
+      <AgeVerificationPopup/>
+      <Footer />
+      <div className="flex flex-wrap gap-6 items-center p-2 justify-center">
+        <Link className="text-xs flex gap-2" href={'mailto:vapealchemist01@gmail.com'}><p className="text-white/60">Email</p><span className="text-indigo-500">vapealchemist01@gmail.com</span></Link>
+        <Link className="text-xs flex gap-2" href={'tel:604-491-0935'}><p className="text-white/60">Phone-1</p><span className="text-indigo-500">604-491-0935</span></Link>
+        <Link className="text-xs flex gap-2" href={'tel:778-869-0007'}><p className="text-white/60">Phone-2</p><span className="text-indigo-500">778-869-0007</span></Link>
       </div>
+    </ThemeProvider>
+
+    <div onClick={() => { router.push('/contact-us') }} className="fixed z-[100] bottom-4 right-4 block lg:hidden  border border-px border-zinc-300 bg-zinc-700 rounded-full p-[5px]">
+      <CartButton />
+      <div className="absolute top-0 mx-auto px-1 left-2 inset-x-0 bg-amber-50 w-fit h-fit text-black rounded-full text-sm">{count}</div>
+    </div>
   </div>
 }
 
