@@ -25,7 +25,7 @@ export default function AgeVerificationPopup() {
             <div className="bg-neutral-800 p-8 rounded-2xl shadow-2xl max-w-md w-full text-center">
                 <h1 className="text-2xl font-bold mb-4 text-white">Age Verification</h1>
                 <p className="text-white mb-6">
-                    You must be <span className="font-semibold">18 years or older</span> to enter this site.
+                    You must be <span className="font-semibold">19 years or older</span> to enter this site.
                 </p>
 
                 <div className="flex justify-center gap-4">
@@ -34,7 +34,7 @@ export default function AgeVerificationPopup() {
                         onClick={handleVerify}
                         className="px-6 py-2 rounded-xl bg-indigo-500 text-white font-medium hover:bg-indigo-600 transition"
                     >
-                        I&apos;m 18+
+                        I&apos;m 19+
                     </button>
                 </div>
             </div>
